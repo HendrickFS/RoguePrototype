@@ -50,6 +50,7 @@ gameOver = False
 op = True
 while op:
     pygame.time.delay(50)
+    timeDecorred += 1
     if gameOver:
         bstArray = []
         bmtArray = []
@@ -62,8 +63,8 @@ while op:
         key = pygame.key.get_pressed()
         if key[pygame.K_SPACE]:
             gameOver = False
+            health = [[20, 570], [42, 570], [64, 570]]
 
-    timeDecorred += 1
     if not gameOver:
         sc.blit(bg2, (0, bgY2))
         sc.blit(bg, (0, bgY))
@@ -98,8 +99,8 @@ while op:
                 sc.blit(slow, (90, 200))
         if posY > 500:
             posY = 500
-        bgY += 3
-        bgY2 += 3
+        bgY += 8
+        bgY2 += 8
         if bgY > 600:
             bgY = -600
         if bgY2 > 600:
@@ -157,6 +158,8 @@ while op:
                     health.pop(len(health)-1)
                 except:
                     print("error")
+            if eShot[1]>600:
+                bstArray.pop(0)
         for h in health:
             sc.blit(hp, (h[0], h[1]))
         if health == []:
